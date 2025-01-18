@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameUIManager : MonoBehaviour
 {
+    // UI Elements
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private TextMeshProUGUI timeElapsed;
+    [SerializeField] private Image dangerMeter;
+
+    [Range(.16f, .82f)]
+    private float danger = .16f;
+
     void Start()
     {
         GameManager.Instance.gameActive = true;
@@ -17,6 +24,12 @@ public class GameUIManager : MonoBehaviour
     {
         updateScoreboard();
         updateTimeElapsed();
+        updateDangerMeter();
+    }
+
+    private void updateDangerMeter()
+    {
+        
     }
 
     private void updateTimeElapsed()

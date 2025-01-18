@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public List<int> highScoreList = new List<int> { 0, 0, 0, 0, 0, 0 };     // Top 6 high scores
     public float elapsedSeconds; // Time elapsed in a given game 
     public float elapsedMinutes;
+    public int lightCount;
 
     public bool gameActive;
 
@@ -50,6 +51,20 @@ public class GameManager : MonoBehaviour
     public void AddToScore(int points)
     {
         currentScore += points;
+    }
+
+    public void AddToLightCount()
+    {
+        lightCount++;
+    }
+
+    public void SubtractFromLightCount()
+    {
+        lightCount--;
+        if(lightCount < 0)
+        {
+            lightCount = 0;
+        }
     }
 
     public void ResetGame()
