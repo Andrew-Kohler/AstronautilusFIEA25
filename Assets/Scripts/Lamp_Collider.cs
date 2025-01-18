@@ -5,19 +5,20 @@ using UnityEngine;
 public class Lamp_Collider : MonoBehaviour
 {
     [SerializeField] Transform point1, point2;
+    [SerializeField] Lamp_Flicker flicker;
     private Vector3 target;
 
     public int speed;
 
     private float time;
-    public int flickerTime;
+    private int flickerTime;
     private bool lightOn;
 
     // Start is called before the first frame update
     void Start()
     {
         target = point2.position;
-
+        flickerTime = flicker.flickerTime;
         time = 0;
         lightOn = true;
 
