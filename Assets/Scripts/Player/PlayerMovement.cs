@@ -46,8 +46,9 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
         _moveValues = _moveAction.ReadValue<Vector2>();
         xDir = _moveValues.x;
         yDir = _moveValues.y;
+        
 
-        _velocity = new Vector3(_moveValues.x * MoveSpeed, 0, _moveValues.y * MoveSpeed);
+        _velocity = new Vector3(_moveValues.x, 0, _moveValues.y).normalized * MoveSpeed;
     }
 
     private void FixedUpdate()
