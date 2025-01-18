@@ -6,13 +6,19 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
 {
     private InputAction _moveAction;
+    private InputAction _dashAction;
     private Vector2 _moveValues;
+    private bool _canDash = true;      // If you are allowed to dash
+    private bool _dashActive;   // If the dash state is active
     private Vector3 _velocity;
 
     private Rigidbody _rb;
     private Animator _anim;
 
     public float MoveSpeed = 7f;
+    public float DashSpeed = 12f;
+    public float dashActiveTime = .1f;
+    public float dashCooldownTime = 3f;
     public float xDir;
     public float yDir;
 
@@ -33,7 +39,9 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
     void Start()
     {
         _moveAction = controls.FindAction("Move");
+        _dashAction = controls.FindAction("Dash");
         _moveAction.Enable();
+        _dashAction.Enable();
         
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
@@ -46,9 +54,23 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
         _moveValues = _moveAction.ReadValue<Vector2>();
         xDir = _moveValues.x;
         yDir = _moveValues.y;
-        
 
-        _velocity = new Vector3(_moveValues.x, 0, _moveValues.y).normalized * MoveSpeed;
+        if (_dashAction.WasPressedThisFrame() && _canDash == true)
+        {
+            _dashActive = true;
+            _canDash = false;
+            StartCoroutine(DoDashCooldown());
+        }
+
+        if (_dashActive)
+        {
+            _velocity = new Vector3(_moveValues.x, 0, _moveValues.y).normalized * DashSpeed;
+        }
+        else
+        {
+            _velocity = new Vector3(_moveValues.x, 0, _moveValues.y).normalized * MoveSpeed;
+        }
+    
     }
 
     private void FixedUpdate()
@@ -58,7 +80,9 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
 
     private void MovePlayer3D()
     {
+
         _rb.velocity = _velocity;
+            
         /*if (!IsIdle)
         {
             
@@ -70,8 +94,25 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
 
     }
 
+    private IEnumerator DoDashCooldown()
+    {
+        yield return new WaitForSeconds(dashActiveTime);
+        _dashActive = false;
+        yield return new WaitForSeconds(dashCooldownTime);
+        _canDash = true;
+    }
+
+    #region Silly New Input Stuff
+
     public void OnMove(InputAction.CallbackContext context)
     {
         
     }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+
+    }
+
+    #endregion
 }
