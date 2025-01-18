@@ -15,10 +15,16 @@ public class Patrol : MonoBehaviour
 
     private bool raccoonInSight;
 
+    private bool guardSurprised;
+
+    public AudioClip huh;
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         target = point1.position;
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -41,7 +47,7 @@ public class Patrol : MonoBehaviour
             }
 
             transform.LookAt(target);
-
+            guardSurprised = true;
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
         }
@@ -51,6 +57,11 @@ public class Patrol : MonoBehaviour
             playerTarget.y = transform.position.y;
             transform.LookAt(playerTarget);
             transform.position = transform.position;
+            if (guardSurprised)
+            {
+                audioSource.PlayOneShot(huh);
+                guardSurprised = false;
+            }
         }
 
     }
