@@ -31,6 +31,7 @@ public class Light_Collision : MonoBehaviour
         {
             lightMeter = 0;
         }
+        AssignCurrentScoreMult();
 
     }
 
@@ -47,6 +48,34 @@ public class Light_Collision : MonoBehaviour
         if (other.gameObject.tag == "Light")
         {
             lights = 0;
+        }
+    }
+
+    public void AssignCurrentScoreMult()
+    {
+        if(lightMeter / timeToBeCaught >= 1)
+        {
+            GameManager.Instance.currentMult = 0;
+        }
+        else if (lightMeter / timeToBeCaught > .8f)
+        {
+            GameManager.Instance.currentMult = 1;
+        }
+        else if (lightMeter / timeToBeCaught > .6f)
+        {
+            GameManager.Instance.currentMult = 2;
+        }
+        else if (lightMeter / timeToBeCaught > .4f)
+        {
+            GameManager.Instance.currentMult = 3;
+        }
+        else if (lightMeter / timeToBeCaught > .2f)
+        {
+            GameManager.Instance.currentMult = 4;
+        }
+        else
+        {
+            GameManager.Instance.currentMult = 5;
         }
     }
 }

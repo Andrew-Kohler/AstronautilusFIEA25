@@ -8,8 +8,8 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
     private InputAction _moveAction;
     private InputAction _dashAction;
     private Vector2 _moveValues;
-    private bool _canDash = true;      // If you are allowed to dash
-    private bool _dashActive;   // If the dash state is active
+    public bool _canDash = true;       // If you are allowed to dash
+    public bool _dashActive;           // If the dash state is active
     private Vector3 _velocity;
 
     private Rigidbody _rb;
@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
     public float DashSpeed = 12f;
     public float dashActiveTime = .1f;
     public float dashCooldownTime = 3f;
+    public float dashCooldownTimer = 0f;
     public float xDir;
     public float yDir;
 
@@ -98,7 +99,13 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
     {
         yield return new WaitForSeconds(dashActiveTime);
         _dashActive = false;
-        yield return new WaitForSeconds(dashCooldownTime);
+
+        dashCooldownTimer = dashCooldownTime;
+        while(dashCooldownTimer > 0)
+        {
+            dashCooldownTimer-= Time.deltaTime;
+            yield return null;
+        }
         _canDash = true;
     }
 

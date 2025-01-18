@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
 
     public int currentScore;     // Score in a current round
+    public int currentMult = 5;    // Multiplier in a current round
     public List<int> highScoreList = new List<int> { 0, 0, 0, 0, 0, 0 };     // Top 6 high scores
     public float elapsedSeconds; // Time elapsed in a given game 
     public float elapsedMinutes;
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour
         currentScore = 0;
         elapsedSeconds = 0;
         elapsedMinutes = 0;
+        currentMult = 5;
     }
 
 

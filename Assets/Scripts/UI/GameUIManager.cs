@@ -10,10 +10,17 @@ public class GameUIManager : MonoBehaviour
     // UI Elements
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private TextMeshProUGUI timeElapsed;
+
     [SerializeField] private Image dangerMeter;
+
+    [SerializeField] private Image shiftCooldown;
+    [SerializeField] private Animator shiftCooldownAnim;
 
     // Necessary Info
     [SerializeField] private Light_Collision playerLight;
+    [SerializeField] private PlayerMovement playerMovement;
+
+    private bool dashUICooldownActive = false;
 
     [Range(.16f, .82f)]
     private float danger = .16f;
@@ -29,6 +36,22 @@ public class GameUIManager : MonoBehaviour
         updateScoreboard();
         updateTimeElapsed();
         updateDangerMeter();
+        updateDashCooldown();
+    }
+
+    private void updateDashCooldown()
+    {
+        
+        if(playerMovement._dashActive == true)
+        {
+            shiftCooldown.color = new Color(0, 0, 0);
+        }
+        // If the player is on cooldown
+        else if (!playerMovement._dashActive && !playerMovement._canDash && !dashUICooldownActive)
+        {
+            dashUICooldownActive=true;
+            StartCoroutine(DoUIDashCooldown());
+        }
     }
 
     private void updateDangerMeter()
@@ -90,5 +113,24 @@ public class GameUIManager : MonoBehaviour
         }
 
         return digitCount;
+    }
+
+    private IEnumerator DoUIDashCooldown()
+    {
+        dashUICooldownActive = true;
+
+        while(playerMovement.dashCooldownTimer > 0)
+        {
+            
+            float lightVal = math.remap(playerMovement.dashCooldownTime, 0, 0, 1, playerMovement.dashCooldownTimer);
+            shiftCooldown.color = new Color(lightVal, lightVal, lightVal);
+            yield return null;
+        }
+
+        // Once the button is lit up all the way, it plays a happy animation
+        shiftCooldownAnim.Play("Recharged", 0, 0);
+
+        dashUICooldownActive = false;
+        yield return null;
     }
 }
