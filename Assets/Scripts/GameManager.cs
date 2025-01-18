@@ -8,8 +8,9 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
 
     public int currentScore;     // Score in a current round
-    List<int> highScoreList;     // Top 10 high scores
-    public float elapsedSeconds; // Time elapsed in a given game in seconds
+    public List<int> highScoreList = new List<int> { 0, 0, 0, 0, 0, 0 };     // Top 6 high scores
+    public float elapsedSeconds; // Time elapsed in a given game 
+    public float elapsedMinutes;
 
     public bool gameActive;
 
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
                 newManager.AddComponent<GameManager>();
                 DontDestroyOnLoad(newManager);
                 _instance = newManager.GetComponent<GameManager>();
+                
             }
             return _instance;
         }
@@ -35,6 +37,12 @@ public class GameManager : MonoBehaviour
         if (gameActive)
         {
             elapsedSeconds += Time.deltaTime;
+            
+            if(Mathf.Round(GameManager.Instance.elapsedSeconds) == 60)
+            {
+                elapsedMinutes++;
+                elapsedSeconds = 0;
+            }
         }
     
     }
@@ -48,6 +56,7 @@ public class GameManager : MonoBehaviour
     {
         currentScore = 0;
         elapsedSeconds = 0;
+        elapsedMinutes = 0;
     }
 
 
