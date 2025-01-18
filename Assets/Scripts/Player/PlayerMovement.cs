@@ -25,6 +25,11 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
 
     Controls controls;
 
+    public GameObject footsteps;
+    AudioSource audioSource;
+
+    private bool soundPlaying;
+
     public void OnEnable()
     {
         if (controls == null)
@@ -47,6 +52,8 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
 
+        audioSource = footsteps.GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -55,6 +62,17 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
         _moveValues = _moveAction.ReadValue<Vector2>();
         xDir = _moveValues.x;
         yDir = _moveValues.y;
+
+        if ((_moveValues.x != 0 || _moveValues.y != 0) && !soundPlaying) 
+        {
+            audioSource.Play();
+            soundPlaying = true;
+        }
+        else if (soundPlaying && _moveValues.x == 0 && _moveValues.y == 0) 
+        {
+            audioSource.Stop();
+            soundPlaying = false;
+        }
 
         if (_dashAction.WasPressedThisFrame() && _canDash == true)
         {

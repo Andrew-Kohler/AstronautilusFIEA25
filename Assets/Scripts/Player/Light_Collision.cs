@@ -10,11 +10,14 @@ public class Light_Collision : MonoBehaviour
     public float sneakyTime;    // How much time the player has spent being SNEAKY
     private int lights;
 
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         lightMeter = 0;
         lights = 0;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -41,6 +44,7 @@ public class Light_Collision : MonoBehaviour
         if (other.gameObject.tag == "Light")
         {
             lights = 1;
+            audioSource.Play();
         }
     }
 
@@ -49,6 +53,7 @@ public class Light_Collision : MonoBehaviour
         if (other.gameObject.tag == "Light")
         {
             lights = 0;
+            audioSource.Stop();
         }
     }
 

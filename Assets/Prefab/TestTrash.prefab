@@ -203,3 +203,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointVal: 10
+  trashSound: {fileID: 6253636720054223777, guid: 1339892eb269fe143b1356a5377ea64e, type: 3}
