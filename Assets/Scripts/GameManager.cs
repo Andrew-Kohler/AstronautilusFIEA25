@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
 
     public int currentScore;     // Score in a current round
     List<int> highScoreList;     // Top 10 high scores
-    public float elapsedSeconds; // Time elapsed in a given game in seconds
+    public float elapsedSeconds = 55; // Time elapsed in a given game 
+    public float elapsedMinutes;
 
     public bool gameActive;
 
@@ -35,6 +36,12 @@ public class GameManager : MonoBehaviour
         if (gameActive)
         {
             elapsedSeconds += Time.deltaTime;
+            
+            if(Mathf.Round(GameManager.Instance.elapsedSeconds) == 60)
+            {
+                elapsedMinutes++;
+                elapsedSeconds = 0;
+            }
             //Debug.Log("Time:" + elapsedSeconds / 60);
         }
         //Debug.Log("Points:" + currentScore);
@@ -50,6 +57,7 @@ public class GameManager : MonoBehaviour
     {
         currentScore = 0;
         elapsedSeconds = 0;
+        elapsedMinutes = 0;
     }
 
 
