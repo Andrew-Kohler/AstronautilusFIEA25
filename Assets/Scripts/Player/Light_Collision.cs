@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Light_Collision : MonoBehaviour
 {
@@ -29,11 +30,15 @@ public class Light_Collision : MonoBehaviour
         }
         if (lights == 0)
         {
-            lightMeter -= Time.deltaTime;
+            lightMeter -= Time.deltaTime / 2;
         }
         if (lightMeter < 0)
         {
             lightMeter = 0;
+        }
+        if(lightMeter > timeToBeCaught)
+        {
+            SceneManager.LoadScene("3_GameOver");
         }
         AssignCurrentScoreMult();
 
