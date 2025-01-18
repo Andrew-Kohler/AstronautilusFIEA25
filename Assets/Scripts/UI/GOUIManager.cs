@@ -44,7 +44,7 @@ public class GOUIManager : MonoBehaviour
         // Start on black
 
         // Do our math
-        int timeBonus = GameManager.Instance.elapsedMinutes * 60 + Mathf.Round(GameManager.Instance.elapsedMinutes);
+        int timeBonus = (int)(GameManager.Instance.elapsedMinutes * 60 + Mathf.Round(GameManager.Instance.elapsedMinutes));
 
         // Count up from 0 to show the score
         int tempScore = 0;
@@ -84,7 +84,7 @@ public class GOUIManager : MonoBehaviour
 
         // Count up from 0 to show the time bonus
         int tempTB = 0;
-        while (tempTB < ());
+        while (tempTB < timeBonus);
         {
             if (GameManager.Instance.currentScore - tempScore > 100)
             {
