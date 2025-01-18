@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
 
     public int currentScore;     // Score in a current round
-    List<int> highScoreList;     // Top 10 high scores
-    public float elapsedSeconds = 55; // Time elapsed in a given game 
+    public List<int> highScoreList = new List<int> { 0, 0, 0, 0, 0, 0 };     // Top 6 high scores
+    public float elapsedSeconds; // Time elapsed in a given game 
     public float elapsedMinutes;
 
     public bool gameActive;
@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
                 newManager.AddComponent<GameManager>();
                 DontDestroyOnLoad(newManager);
                 _instance = newManager.GetComponent<GameManager>();
+                
             }
             return _instance;
         }
