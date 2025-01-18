@@ -9,11 +9,14 @@ public class Light_Collision : MonoBehaviour
     public float lightMeter; // The meter that determines when the raccoon is caught
     private int lights;
 
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         lightMeter = 0;
         lights = 0;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -40,6 +43,7 @@ public class Light_Collision : MonoBehaviour
         if (other.gameObject.tag == "Light")
         {
             lights = 1;
+            audioSource.Play();
         }
     }
 
@@ -48,6 +52,7 @@ public class Light_Collision : MonoBehaviour
         if (other.gameObject.tag == "Light")
         {
             lights = 0;
+            audioSource.Stop();
         }
     }
 
