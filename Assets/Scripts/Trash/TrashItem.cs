@@ -20,7 +20,7 @@ public class TrashItem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.AddToScore(pointVal);
+            GameManager.Instance.AddToScore(pointVal * GameManager.Instance.currentMult);
             Destroy(gameObject);
         }
     }

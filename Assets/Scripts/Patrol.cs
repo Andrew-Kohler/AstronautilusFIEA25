@@ -47,7 +47,9 @@ public class Patrol : MonoBehaviour
         }
         else
         {
-            transform.LookAt(player);
+            Vector3 playerTarget = player.position;
+            playerTarget.y = transform.position.y;
+            transform.LookAt(playerTarget);
             transform.position = transform.position;
         }
 
@@ -55,19 +57,24 @@ public class Patrol : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Entered");
+        //Debug.Log("Entered");
         if (other.gameObject.tag == "Player")
         {
             raccoonInSight = true;
+           
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Exited");
+        //Debug.Log("Exited");
         if (other.gameObject.tag == "Player")
         {
             raccoonInSight = false;
+            
         }
     }
+
+    // Ok, we need a global solution and fast
+    // Let's do counts and just fix our issue
 }
