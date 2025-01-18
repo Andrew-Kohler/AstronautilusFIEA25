@@ -42,9 +42,7 @@ public class GameManager : MonoBehaviour
                 elapsedMinutes++;
                 elapsedSeconds = 0;
             }
-            //Debug.Log("Time:" + elapsedSeconds / 60);
         }
-        //Debug.Log("Points:" + currentScore);
     
     }
 
