@@ -35,7 +35,9 @@ public class GameManager : MonoBehaviour
         if (gameActive)
         {
             elapsedSeconds += Time.deltaTime;
+            //Debug.Log("Time:" + elapsedSeconds / 60);
         }
+        //Debug.Log("Points:" + currentScore);
     
     }
 
