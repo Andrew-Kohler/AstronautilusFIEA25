@@ -13,6 +13,7 @@ public class GOUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeMult;
     [SerializeField] private TextMeshProUGUI sneakyBonus;
     [SerializeField] private TextMeshProUGUI finalScore;
+    [SerializeField] private GameObject highScoreTXT;
     void Start()
     {
         StartCoroutine(DoGameOverSequence());
@@ -163,8 +164,13 @@ public class GOUIManager : MonoBehaviour
             yield return null;
         }
         finalScore.color = Color.white;
+        yield return new WaitForSeconds(.3f);
 
         // Find out if this is a new high score
+        if (GameManager.Instance.checkHighScore(finalScoreVal))
+        {
+            highScoreTXT.SetActive(true);
+        }
 
         yield return null;
     }
