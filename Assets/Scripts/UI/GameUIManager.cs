@@ -22,8 +22,8 @@ public class GameUIManager : MonoBehaviour
 
     private bool dashUICooldownActive = false;
 
-    [Range(.16f, .82f)]
-    private float danger = .16f;
+    [Range(.13f, .82f)]
+    private float danger = .13f;
 
     void Start()
     {
@@ -56,7 +56,7 @@ public class GameUIManager : MonoBehaviour
 
     private void updateDangerMeter()
     {
-        dangerMeter.fillAmount = math.remap(0, playerLight.timeToBeCaught, .16f, .82f, playerLight.lightMeter);
+        dangerMeter.fillAmount = math.remap(0, playerLight.timeToBeCaught, .13f, .82f, playerLight.lightMeter);
     }
 
     private void updateTimeElapsed()
