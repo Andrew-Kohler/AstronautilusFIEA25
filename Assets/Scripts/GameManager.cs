@@ -9,12 +9,12 @@ public class GameManager : MonoBehaviour
 
     //TODO:Make sure to clear out these test vals before build
 
-    public int currentScore = 10250;     // Score in a current round
+    public int currentScore = 0;     // Score in a current round
     public int currentMult = 5;    // Multiplier in a current round
     public List<int> highScoreList = new List<int> { 0, 0, 0, 0, 0, 0 };     // Top 6 high scores
-    public float elapsedSeconds = 10; // Time elapsed in a given game 
-    public float elapsedMinutes = 2;
-    public float elapsedSneakySeconds = 47;
+    public float elapsedSeconds = 0; // Time elapsed in a given game 
+    public float elapsedMinutes = 0;
+    public float elapsedSneakySeconds = 0;
     public int lightCount;
 
     public bool gameActive;
