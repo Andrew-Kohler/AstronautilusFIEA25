@@ -5,6 +5,7 @@ using UnityEngine;
 public class TrashItem : MonoBehaviour
 {
     [SerializeField] private int pointVal;
+    public GameObject trashSound;
     void Start()
     {
         //GameManager.Instance.gameActive = true;
@@ -20,6 +21,8 @@ public class TrashItem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Instantiate(trashSound);
+
             GameManager.Instance.AddToScore(pointVal * GameManager.Instance.currentMult);
             Destroy(gameObject);
         }
