@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Light_Collision : MonoBehaviour
 {
-    private float lightMeter; // The meter that determines when the raccoon is caught
+    public float timeToBeCaught = 5f;
+    public float lightMeter; // The meter that determines when the raccoon is caught
     private int lights;
 
     // Start is called before the first frame update

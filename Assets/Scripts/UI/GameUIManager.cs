@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.Mathematics;
 using TMPro;
 
 public class GameUIManager : MonoBehaviour
@@ -10,6 +11,9 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private TextMeshProUGUI timeElapsed;
     [SerializeField] private Image dangerMeter;
+
+    // Necessary Info
+    [SerializeField] private Light_Collision playerLight;
 
     [Range(.16f, .82f)]
     private float danger = .16f;
@@ -29,7 +33,7 @@ public class GameUIManager : MonoBehaviour
 
     private void updateDangerMeter()
     {
-        
+        dangerMeter.fillAmount = math.remap(0, playerLight.timeToBeCaught, .16f, .82f, playerLight.lightMeter);
     }
 
     private void updateTimeElapsed()

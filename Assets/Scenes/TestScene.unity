@@ -174,7 +174,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 518824594}
   timeElapsed: {fileID: 1566802293}
-  dangerMeter: {fileID: 0}
+  dangerMeter: {fileID: 1643088670}
+  playerLight: {fileID: 1540588064}
 --- !u!1 &74412094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,6 +1187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6cce9f4cf9558648aa5535ed0d7939c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToBeCaught: 5
+  lightMeter: 0
 --- !u!1 &1566802291
 GameObject:
   m_ObjectHideFlags: 0
