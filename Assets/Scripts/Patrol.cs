@@ -17,6 +17,9 @@ public class Patrol : MonoBehaviour
 
     private bool guardSurprised;
 
+    [SerializeField] GameObject leg1;
+    [SerializeField] GameObject leg2;
+
     public AudioClip huh;
     AudioSource audioSource;
 
@@ -34,6 +37,9 @@ public class Patrol : MonoBehaviour
 
         if (!raccoonInSight)
         {
+            leg1.GetComponent<Animator>().Play("PatrollerAnim");
+            leg2.GetComponent<Animator>().Play("PatrollerAnim2");
+
 
             if (Vector3.Distance(transform.position, point1.position) < 0.1f)
             {
@@ -53,6 +59,9 @@ public class Patrol : MonoBehaviour
         }
         else
         {
+            leg1.GetComponent<Animator>().Play("PatrolStatic1");
+            leg2.GetComponent<Animator>().Play("PatrolStatic2");
+
             Vector3 playerTarget = player.position;
             playerTarget.y = transform.position.y;
             transform.LookAt(playerTarget);
