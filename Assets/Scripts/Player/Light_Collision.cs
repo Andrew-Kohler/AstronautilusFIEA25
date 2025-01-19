@@ -40,8 +40,6 @@ public class Light_Collision : MonoBehaviour
         musicAudioSource = musicSoundSource.GetComponent<AudioSource>();
         footstepsAudioSource = footstepsSoundSource.GetComponent<AudioSource>();
 
-
-
     }
 
     // Update is called once per frame
