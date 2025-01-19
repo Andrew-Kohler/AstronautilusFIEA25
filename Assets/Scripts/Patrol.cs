@@ -85,7 +85,4 @@ public class Patrol : MonoBehaviour
             
         }
     }
-
-    // Ok, we need a global solution and fast
-    // Let's do counts and just fix our issue
 }
