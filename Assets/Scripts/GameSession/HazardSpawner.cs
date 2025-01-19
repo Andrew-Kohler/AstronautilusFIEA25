@@ -53,7 +53,7 @@ public class HazardSpawner : MonoBehaviour
         UpdateLamps();
         //UpdateCams();
         UpdateCarts();
-        //UpdateFloods();
+        UpdateFloods();
 
     }
 
@@ -152,7 +152,7 @@ public class HazardSpawner : MonoBehaviour
 
         if (floodSpawnTimer <= 0) // If it's time to spawn, we spawn
         {
-            cartSpawnTimer = currentCartSpawnTime;
+            floodSpawnTimer = currentFloodSpawnTime;
 
             // Randomly select a cart prefab
             int floodIndex = Random.Range(0, floodPrefabs.Count);
