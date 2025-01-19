@@ -14,10 +14,17 @@ public class SecurityCameraMotion : MonoBehaviour
 
     private bool rotatedRight;
 
+    private bool soundPlayed;
+
+    public AudioClip whirr;
+    AudioSource audioSource;
+
+
     // Start is called before the first frame update
     void Start()
     {
         time = 0;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -27,8 +34,15 @@ public class SecurityCameraMotion : MonoBehaviour
 
         if (time >= rotateTime)
         {
-            if (!rotatedRight)
+            if (!soundPlayed)
             {
+                audioSource.PlayOneShot(whirr);
+
+            }
+
+            if (!rotatedRight)
+            { 
+
                 transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
                 rightTime += Time.deltaTime;
                 if (rightTime >= rotateTime)
@@ -47,6 +61,8 @@ public class SecurityCameraMotion : MonoBehaviour
                     time = 0;
                     leftTime = 0;
                     rotatedRight = false;
+                    audioSource.PlayOneShot(whirr);
+
                 }
             }
 
