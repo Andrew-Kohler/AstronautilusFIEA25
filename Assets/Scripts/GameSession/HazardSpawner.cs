@@ -65,7 +65,7 @@ public class HazardSpawner : MonoBehaviour
             {
                 nextGuardIndex++;
                 int deploy = Random.Range(0, inactiveGuards.Count);
-                // TODO: Activate the guard chosen based on this info
+                inactiveGuards[deploy].IsOn = true;
                 inactiveGuards.RemoveAt(deploy);
             }
         }
