@@ -24,6 +24,8 @@ public class Light_Collision : MonoBehaviour
     [SerializeField] GameObject footstepsSoundSource;
     AudioSource footstepsAudioSource;
 
+    //[SerializeField] Animator transitionAnim;
+
     public AudioClip jailDoors;
     AudioSource thisAudioSource;
 
@@ -122,7 +124,7 @@ public class Light_Collision : MonoBehaviour
         musicAudioSource.volume = 0;
         footstepsAudioSource.volume = 0;
         thisAudioSource.PlayOneShot(jailDoors);
-
+        //transitionAnim.Play("JailBars", 0, 0);
 
         yield return new WaitForSeconds(2.5f);
         SceneManager.LoadScene("3_GameOver");
