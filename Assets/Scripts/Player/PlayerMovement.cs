@@ -28,6 +28,14 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
     public GameObject footsteps;
     AudioSource audioSource;
 
+    [SerializeField] GameObject backRightLegAnim;
+    [SerializeField] GameObject backLeftLegAnim;
+    [SerializeField] GameObject frontRightLegAnim;
+    [SerializeField] GameObject frontLeftLegAnim;
+
+
+
+
     private bool soundPlaying;
 
     public void OnEnable()
@@ -54,6 +62,8 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
 
         audioSource = footsteps.GetComponent<AudioSource>();
 
+        
+
     }
 
     // Update is called once per frame
@@ -63,15 +73,36 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
         xDir = _moveValues.x;
         yDir = _moveValues.y;
 
-        if ((_moveValues.x != 0 || _moveValues.y != 0) && !soundPlaying) 
+        if (_moveValues.x != 0 || _moveValues.y != 0) 
         {
-            audioSource.Play();
-            soundPlaying = true;
+            backRightLegAnim.GetComponent<Animator>().Play("BLeg_RWalk", 0);
+            backLeftLegAnim.GetComponent<Animator>().Play("BLeg_LWalk", 0);
+            frontRightLegAnim.GetComponent<Animator>().Play("FLeg_R_Walk", 0);
+            frontLeftLegAnim.GetComponent<Animator>().Play("FLeg_L_Walk", 0);
+
+
+            if (!soundPlaying)
+            {
+
+                audioSource.Play();
+                soundPlaying = true;
+            }
+
+            
         }
-        else if (soundPlaying && _moveValues.x == 0 && _moveValues.y == 0) 
+        else if (_moveValues.x == 0 && _moveValues.y == 0) 
         {
-            audioSource.Stop();
-            soundPlaying = false;
+            backRightLegAnim.GetComponent<Animator>().Play("BLeg_RStatic", 0);
+            backLeftLegAnim.GetComponent<Animator>().Play("BLeg_LStatic", 0);
+            frontRightLegAnim.GetComponent<Animator>().Play("FLeg_R_Static", 0);
+            frontLeftLegAnim.GetComponent<Animator>().Play("FLeg_LStatic", 0);
+
+            if (soundPlaying)
+            {
+                audioSource.Stop();
+                soundPlaying = false;
+            }
+            
         }
 
         if (_dashAction.WasPressedThisFrame() && _canDash == true)
