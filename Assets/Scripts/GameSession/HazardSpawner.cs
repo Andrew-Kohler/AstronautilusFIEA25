@@ -51,8 +51,8 @@ public class HazardSpawner : MonoBehaviour
     {
         //UpdatePatrols();
         UpdateLamps();
-        UpdateCams();
-        //UpdateCarts();
+        //UpdateCams();
+        UpdateCarts();
         //UpdateFloods();
 
     }
@@ -100,18 +100,22 @@ public class HazardSpawner : MonoBehaviour
         }
     }
 
-    private void UpdateCarts() //TODO
+    private void UpdateCarts()
     {
-        if (GameManager.Instance.severityLevel == cartActiveLevels[nextCartIndex]) // If the severity level makes it there, drop the time between spawns
+        if(nextCartIndex < cartActiveLevels.Count) // If there's further to go
         {
-            currentCartSpawnTime = cartTimers[nextCartIndex];
-            nextCartIndex++;
-
-            if (cartSpawnTimer > currentCartSpawnTime)
+            if (GameManager.Instance.severityLevel == cartActiveLevels[nextCartIndex]) // If the severity level makes it there, drop the time between spawns
             {
-                cartSpawnTimer = currentCartSpawnTime;
+                currentCartSpawnTime = cartTimers[nextCartIndex];
+                nextCartIndex++;
+
+                if (cartSpawnTimer > currentCartSpawnTime)
+                {
+                    cartSpawnTimer = currentCartSpawnTime;
+                }
             }
         }
+        
 
         cartSpawnTimer -= Time.deltaTime;
 
@@ -129,6 +133,30 @@ public class HazardSpawner : MonoBehaviour
 
     private void UpdateFloods() //TODO
     {
+        if (nextFloodIndex < floodActiveLevels.Count) // If there's further to go
+        {
+            if (GameManager.Instance.severityLevel == floodActiveLevels[nextFloodIndex]) // If the severity level makes it there, drop the time between spawns
+            {
+                currentFloodSpawnTime = floodTimers[nextFloodIndex];
+                nextFloodIndex++;
+
+                if (floodSpawnTimer > currentFloodSpawnTime)
+                {
+                    floodSpawnTimer = currentFloodSpawnTime;
+                }
+            }
+        }
+
+
         floodSpawnTimer -= Time.deltaTime;
+
+        if (floodSpawnTimer <= 0) // If it's time to spawn, we spawn
+        {
+            cartSpawnTimer = currentCartSpawnTime;
+
+            // Randomly select a cart prefab
+            int floodIndex = Random.Range(0, floodPrefabs.Count);
+            Instantiate(floodPrefabs[floodIndex]);
+        }
     }
 }

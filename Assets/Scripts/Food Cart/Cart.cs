@@ -5,10 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Cart : MonoBehaviour
 {
+    public string animNumber;
+    public float delay;
+    private Animator _anim; // 1, 2, 3, or 4
     // Start is called before the first frame update
     void Start()
     {
-        
+        _anim = GetComponent<Animator>();
+        StartCoroutine(DoCart());
     }
 
     // Update is called once per frame
@@ -23,5 +27,13 @@ public class Cart : MonoBehaviour
         {
             SceneManager.LoadScene("3_GameOver");
         }
+    }
+
+    private IEnumerator DoCart()
+    {
+        yield return new WaitForSeconds(delay);
+        _anim.Play(animNumber, 0, 0);
+        yield return new WaitForSeconds(1f);
+        Destroy(this.gameObject);
     }
 }
