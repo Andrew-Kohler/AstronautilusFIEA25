@@ -1297,7 +1297,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 27, y: -2049.3945}
+  m_AnchoredPosition: {x: 27, y: -2250}
   m_SizeDelta: {x: 1001.9728, y: 472.2233}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &735192488
@@ -2493,7 +2493,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: sounds courtesy of freesound.org and pixabay
+  m_text: "sounds courtesy of freesound.org and pixabay\n\nfont courtesy of \ndaFont.com"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 34e565d3abbbcd2439a5a192974fd5ff, type: 2}
   m_sharedMaterial: {fileID: 4356020049443877015, guid: 34e565d3abbbcd2439a5a192974fd5ff, type: 2}
