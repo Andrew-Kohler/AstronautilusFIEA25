@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 5493539389090895144}
   - component: {fileID: 6959023844982987393}
   - component: {fileID: 8316920970718534735}
+  - component: {fileID: 2040389932417847363}
   m_Layer: 0
   m_Name: Lamp Post
   m_TagString: Untagged
@@ -289,6 +290,29 @@ MonoBehaviour:
   flickerTime: 2
   IsOn: 0
   lights: {fileID: 469946408544705827}
+--- !u!136 &2040389932417847363
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4377104817177225713}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.010183107
+  m_Height: 0.44124356
+  m_Direction: 2
+  m_Center: {x: -0.0001607779, y: -3.0891408e-16, z: 0.21101077}
 --- !u!1 &5440248948238071791
 GameObject:
   m_ObjectHideFlags: 0

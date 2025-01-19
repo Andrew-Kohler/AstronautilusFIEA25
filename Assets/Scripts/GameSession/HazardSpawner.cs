@@ -41,7 +41,7 @@ public class HazardSpawner : MonoBehaviour
     {
         //UpdatePatrols();
         UpdateLamps();
-        UpdateCams();
+        //UpdateCams();
         //UpdateCarts();
         //UpdateFloods();
 
