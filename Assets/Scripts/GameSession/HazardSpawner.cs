@@ -24,16 +24,26 @@ public class HazardSpawner : MonoBehaviour
     [SerializeField] private List<GameObject> cartPrefabs = new List<GameObject>(); // Prefabs to spawn for cart paths
     [SerializeField] private List<int> cartActiveLevels = new List<int>(); // The starting level, & levels where the time between spawns decreases
     [SerializeField] private List<int> cartTimers = new List<int>(); // Timer requirements for each decrease in spawn time reqs
+    private float currentCartSpawnTime = 9999999; // How long it takes to spawn a new cart
+    private float cartSpawnTimer;
+    private int nextCartIndex;
 
     [Header("Spotlight Management")]
     [SerializeField] private List<GameObject> floodPrefabs = new List<GameObject>(); // Prefabs to spawn for floodlights
     [SerializeField] private List<int> floodActiveLevels = new List<int>(); // Starting levels, and levels where the time between spawns decreases
     [SerializeField] private List<int> floodTimers = new List<int>(); // Timer requirements for each decrease in spawn time reqs
+    private float currentFloodSpawnTime = 9999999; // How long it takes to spawn a new floodlight
+    private float floodSpawnTimer;
+    private int nextFloodIndex;
     void Start()
     {
         nextGuardIndex = 0;
         nextLampIndex = 0;
         nextCamIndex = 0;
+        nextCartIndex = 0;
+        nextFloodIndex = 0;
+
+        cartSpawnTimer = currentCartSpawnTime;
     }
 
     // Update is called once per frame
@@ -41,7 +51,7 @@ public class HazardSpawner : MonoBehaviour
     {
         //UpdatePatrols();
         UpdateLamps();
-        //UpdateCams();
+        UpdateCams();
         //UpdateCarts();
         //UpdateFloods();
 
@@ -92,11 +102,33 @@ public class HazardSpawner : MonoBehaviour
 
     private void UpdateCarts() //TODO
     {
+        if (GameManager.Instance.severityLevel == cartActiveLevels[nextCartIndex]) // If the severity level makes it there, drop the time between spawns
+        {
+            currentCartSpawnTime = cartTimers[nextCartIndex];
+            nextCartIndex++;
+
+            if (cartSpawnTimer > currentCartSpawnTime)
+            {
+                cartSpawnTimer = currentCartSpawnTime;
+            }
+        }
+
+        cartSpawnTimer -= Time.deltaTime;
+
+        if(cartSpawnTimer <= 0) // If it's time to spawn, we spawn
+        {
+            cartSpawnTimer = currentCartSpawnTime;
+
+            // Randomly select a cart prefab
+            int cartIndex = Random.Range(0, cartPrefabs.Count);
+            Instantiate(cartPrefabs[cartIndex]);
+        }
+
 
     }
 
     private void UpdateFloods() //TODO
     {
-
+        floodSpawnTimer -= Time.deltaTime;
     }
 }
