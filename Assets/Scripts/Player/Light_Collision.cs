@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Light_Collision : MonoBehaviour
 {
+    public bool Practice = false;
     public float timeToBeCaught = 5f;
     public float lightMeter;    // The meter that determines when the raccoon is caught
     public float sneakyTime;    // How much time the player has spent being SNEAKY
@@ -59,9 +60,16 @@ public class Light_Collision : MonoBehaviour
         }
         if(lightMeter > timeToBeCaught && !caught)
         {
+            if (Practice)
+            {
+                lightMeter = timeToBeCaught;
+            }
+            else
+            {
+                caught = true;
+                StartCoroutine(GameOver());
+            }
             
-            caught = true;
-            StartCoroutine(GameOver());
 
         }
 
