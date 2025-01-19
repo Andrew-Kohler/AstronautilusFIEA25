@@ -24,7 +24,7 @@ public class Light_Collision : MonoBehaviour
     [SerializeField] GameObject footstepsSoundSource;
     AudioSource footstepsAudioSource;
 
-    //[SerializeField] Animator transitionAnim;
+    [SerializeField] Animator transitionAnim;
 
     public AudioClip jailDoors;
     AudioSource thisAudioSource;
@@ -53,7 +53,7 @@ public class Light_Collision : MonoBehaviour
         }
         if (lights == 0 && !caught)
         {
-            lightMeter -= Time.deltaTime / 2;
+            lightMeter -= Time.deltaTime / 3;
         }
         if (lightMeter < 0)
         {
@@ -75,7 +75,7 @@ public class Light_Collision : MonoBehaviour
     {
         if (other.gameObject.tag == "Light")
         {
-            lights = 1;
+            lights += 1;
             lightAudioSource.Play();
         }
     }
@@ -84,8 +84,11 @@ public class Light_Collision : MonoBehaviour
     {
         if (other.gameObject.tag == "Light")
         {
-            lights = 0;
-            lightAudioSource.Stop();
+            lights -= 1;
+            if (lights == 0)
+            {
+                lightAudioSource.Stop();
+            }
         }
     }
 
@@ -124,7 +127,7 @@ public class Light_Collision : MonoBehaviour
         musicAudioSource.volume = 0;
         footstepsAudioSource.volume = 0;
         thisAudioSource.PlayOneShot(jailDoors);
-        //transitionAnim.Play("JailBars", 0, 0);
+        transitionAnim.Play("JailBars", 0, 0);
 
         yield return new WaitForSeconds(2.5f);
         SceneManager.LoadScene("3_GameOver");
