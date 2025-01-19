@@ -50,10 +50,10 @@ public class HazardSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //UpdatePatrols();
+        UpdatePatrols();
         UpdateLamps();
-        //UpdateCams();
-        UpdateCarts();
+        UpdateCams();
+        //UpdateCarts();
         UpdateFloods();
 
     }
