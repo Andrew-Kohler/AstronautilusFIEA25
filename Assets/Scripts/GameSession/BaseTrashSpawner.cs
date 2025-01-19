@@ -7,6 +7,8 @@ public class BaseTrashSpawner : MonoBehaviour
     [SerializeField] private List<GameObject> _trashConfigs;
 
     bool activeConfig;
+    public bool Practice = false;
+    public bool One = false;
     void Start()
     {
         
@@ -25,6 +27,21 @@ public class BaseTrashSpawner : MonoBehaviour
     {
         activeConfig = true;
         GameObject configToSpawn = _trashConfigs[Random.Range(0, _trashConfigs.Count)]; // Get the config to spawn
+        if (Practice)
+        {
+            if (One)
+            {
+                configToSpawn = _trashConfigs[1];
+                One = false;
+            }
+            else
+            {
+                configToSpawn = _trashConfigs[0];
+                One = true;
+            }
+                
+        }
+        
 
         GameObject activeTrash = Instantiate(configToSpawn); // Spawn it
         yield return new WaitUntil(()=>activeTrash.transform.childCount == 0); // Wait until all the trash has been collected
