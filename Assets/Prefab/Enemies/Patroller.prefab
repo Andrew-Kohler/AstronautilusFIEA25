@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6603260395590779680}
   - component: {fileID: 7590821843198998900}
   - component: {fileID: 6716843098789944499}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1508,7 +1508,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2613
+  m_VersionIndex: 2622
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1614,7 +1614,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!95 &6716843098789944499
@@ -1652,7 +1652,7 @@ GameObject:
   - component: {fileID: 7918550081066712431}
   - component: {fileID: 4350134313107490742}
   - component: {fileID: 6166357222053963425}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3201,7 +3201,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1061
+  m_VersionIndex: 1070
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3306,7 +3306,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &3042209162789365879
@@ -3323,7 +3323,7 @@ GameObject:
   - component: {fileID: 5352229550920719249}
   - component: {fileID: 9050915532059177207}
   - component: {fileID: 93311954846578641}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4373,7 +4373,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 372
+  m_VersionIndex: 381
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4478,7 +4478,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &3106540220688420439
@@ -4527,7 +4527,7 @@ GameObject:
   - component: {fileID: 1707058210671393252}
   - component: {fileID: 4087817977268661758}
   - component: {fileID: 3812938381513511989}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Patrol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4641,7 +4641,10 @@ MonoBehaviour:
   point2: {fileID: 4147031758606213496}
   player: {fileID: 0}
   speed: 2
+  leg1: {fileID: 5252552602546458974}
+  leg2: {fileID: 93314937366336396}
   huh: {fileID: 8300000, guid: 0b90f65dba31d8d4c98f3a50aff18e2c, type: 3}
+  IsOn: 1
 --- !u!54 &4087817977268661758
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4780,7 +4783,7 @@ GameObject:
   - component: {fileID: 7518065721986622746}
   - component: {fileID: 8339371925004914428}
   - component: {fileID: 3719554330156844264}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6273,7 +6276,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2610
+  m_VersionIndex: 2619
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -6379,7 +6382,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!95 &3719554330156844264
@@ -6415,7 +6418,7 @@ GameObject:
   - component: {fileID: 6036064228805711726}
   - component: {fileID: 1911753385498220885}
   - component: {fileID: 4305644953458441554}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light Ring
   m_TagString: Light
   m_Icon: {fileID: 0}
@@ -6519,7 +6522,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5476781378465535770}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Patroller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6558,7 +6561,7 @@ GameObject:
   - component: {fileID: 6519096468335402909}
   - component: {fileID: 8577841000996670545}
   - component: {fileID: 8470232473199274197}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7608,7 +7611,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 375
+  m_VersionIndex: 384
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -7713,7 +7716,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &7320640834273724393
@@ -7756,7 +7759,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 670684207818770543}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Patroller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7779,7 +7782,7 @@ Transform:
   - {fileID: 5947668452614007078}
   - {fileID: 4147031758606213496}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9176256844422802651
 GameObject:
