@@ -14,8 +14,14 @@ public class GOUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI sneakyBonus;
     [SerializeField] private TextMeshProUGUI finalScore;
     [SerializeField] private GameObject highScoreTXT;
+
+    public AudioClip highScoreSparkle;
+    public AudioClip numberFlips;
+    AudioSource audioSource;
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(numberFlips);
         StartCoroutine(DoGameOverSequence());
     }
 
@@ -169,6 +175,7 @@ public class GOUIManager : MonoBehaviour
         // Find out if this is a new high score
         if (GameManager.Instance.checkHighScore(finalScoreVal))
         {
+            audioSource.PlayOneShot(highScoreSparkle);
             highScoreTXT.SetActive(true);
         }
 

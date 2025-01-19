@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SecurityCameraMotion : MonoBehaviour
 {
+    public bool isOn;
     public int rotateSpeed;
 
     public int rotateTime;
@@ -19,53 +20,66 @@ public class SecurityCameraMotion : MonoBehaviour
     public AudioClip whirr;
     AudioSource audioSource;
 
+    [SerializeField] GameObject light1;
+
 
     // Start is called before the first frame update
     void Start()
     {
         time = 0;
         audioSource = GetComponent<AudioSource>();
+        light1.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-
-        if (time >= rotateTime)
+        if (isOn)
         {
-            if (!soundPlayed)
+            light1.SetActive(true);
+
+            time += Time.deltaTime;
+
+            if (time >= rotateTime)
             {
-                audioSource.PlayOneShot(whirr);
-
-            }
-
-            if (!rotatedRight)
-            { 
-
-                transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
-                rightTime += Time.deltaTime;
-                if (rightTime >= rotateTime)
+                if (!soundPlayed)
                 {
-                    time = 0;
-                    rightTime = 0;
-                    rotatedRight = true;
-                }
-            }
-            else
-            {
-                transform.Rotate(Vector3.down * rotateSpeed * Time.deltaTime);
-                leftTime += Time.deltaTime;
-                if (leftTime >= rotateTime)
-                {
-                    time = 0;
-                    leftTime = 0;
-                    rotatedRight = false;
                     audioSource.PlayOneShot(whirr);
 
                 }
+
+                if (!rotatedRight)
+                {
+
+                    transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
+                    rightTime += Time.deltaTime;
+                    if (rightTime >= rotateTime)
+                    {
+                        time = 0;
+                        rightTime = 0;
+                        rotatedRight = true;
+                    }
+                }
+                else
+                {
+                    transform.Rotate(Vector3.down * rotateSpeed * Time.deltaTime);
+                    leftTime += Time.deltaTime;
+                    if (leftTime >= rotateTime)
+                    {
+                        time = 0;
+                        leftTime = 0;
+                        rotatedRight = false;
+                        audioSource.PlayOneShot(whirr);
+
+                    }
+                }
+
             }
+        }
+        else // The time before the activation period
+        {
 
         }
+        
     }
 }
