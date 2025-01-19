@@ -6418,7 +6418,7 @@ GameObject:
   - component: {fileID: 6036064228805711726}
   - component: {fileID: 1911753385498220885}
   - component: {fileID: 4305644953458441554}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light Ring
   m_TagString: Light
   m_Icon: {fileID: 0}

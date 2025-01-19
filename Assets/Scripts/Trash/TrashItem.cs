@@ -39,12 +39,12 @@ public class TrashItem : MonoBehaviour
 
     private IEnumerator DoShrink()
     {
+        yield return new WaitForSeconds(2f);
         float timer = disTime;
         while(timer > 0)
         {
             timer -= Time.deltaTime;
-            float scaleVal = math.remap(disTime, 0, 1, 0, timer);
-            Debug.Log(scaleVal);
+            float scaleVal = math.remap(disTime, 0, 1.5215f, 0, timer);
             this.transform.localScale = new Vector3(scaleVal, scaleVal, scaleVal);
             yield return null;
         }
