@@ -28,6 +28,7 @@ public class BaseTrashSpawner : MonoBehaviour
 
         GameObject activeTrash = Instantiate(configToSpawn); // Spawn it
         yield return new WaitUntil(()=>activeTrash.transform.childCount == 0); // Wait until all the trash has been collected
+        GameManager.Instance.severityLevel++; // Add a severity level
         Destroy(activeTrash);
 
         activeConfig = false; // Begin again

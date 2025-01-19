@@ -27,22 +27,26 @@ public class Lamp_Collider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        if (time >= flickerTime)
+        if (flicker.IsOn)
         {
-            if (lightOn)
+            time += Time.deltaTime;
+            if (time >= flickerTime)
             {
-                target = point1.position;
-                lightOn = false;
-            }
-            else
-            {
-                target = point2.position;
-                lightOn = true;
-            }
+                if (lightOn)
+                {
+                    target = point1.position;
+                    lightOn = false;
+                }
+                else
+                {
+                    target = point2.position;
+                    lightOn = true;
+                }
 
-            time = 0;
+                time = 0;
+            }
         }
+        
 
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 

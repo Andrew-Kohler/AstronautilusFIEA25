@@ -15,9 +15,18 @@ public class GameManager : MonoBehaviour
     public float elapsedSeconds = 0; // Time elapsed in a given game 
     public float elapsedMinutes = 0;
     public float elapsedSneakySeconds = 0;
+
+    private float elapsedSecondsSeverity = 0;
+    private float severityIncrementTimeBenchmark = 10f; 
+    public int severityLevel = 0;
     public int lightCount;
 
     public bool gameActive;
+
+    // A severity level is added every 10 seconds.
+    // Collecting a round of trash adds a severity level.
+    // 6 severity levels a minute means that at 5 minutes, or level 30, everything should be active.
+    // Player action will probably get this figure down to a healthy 3 minutes? Or that's the goal.
 
     public static GameManager Instance
     {
@@ -42,11 +51,18 @@ public class GameManager : MonoBehaviour
         if (gameActive)
         {
             elapsedSeconds += Time.deltaTime;
+            elapsedSecondsSeverity += Time.deltaTime;
             
             if(Mathf.Round(GameManager.Instance.elapsedSeconds) == 60)
             {
                 elapsedMinutes++;
                 elapsedSeconds = 0;
+            }
+
+            if(elapsedSecondsSeverity > severityIncrementTimeBenchmark)
+            {
+                severityLevel++;
+                elapsedSecondsSeverity = 0;        
             }
         }
     
@@ -78,6 +94,7 @@ public class GameManager : MonoBehaviour
         elapsedMinutes = 0;
         elapsedSneakySeconds = 0;
         currentMult = 5;
+        severityLevel = 0;
     }
 
     public bool checkHighScore(int score)
