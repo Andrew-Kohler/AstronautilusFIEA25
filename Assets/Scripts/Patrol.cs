@@ -24,6 +24,8 @@ public class Patrol : MonoBehaviour
     AudioSource audioSource;
 
     public bool IsOn; // Variable for enabling the extra 
+    bool turned = true;
+    bool fullyTurned = true;
 
     // Start is called before the first frame update
     void Start()
@@ -47,21 +49,42 @@ public class Patrol : MonoBehaviour
                 if (Vector3.Distance(transform.position, point1.position) < 0.1f)
                 {
                     target = point2.position;
+                    //turned = false;
+                   // fullyTurned = false;
 
                 }
                 else if (Vector3.Distance(transform.position, point2.position) < 0.1f)
                 {
+                    //turned = false;
+                    //fullyTurned = false;
                     target = point1.position;
 
                 }
 
-                transform.LookAt(target);
+                /*if (!turned)
+                {
+                    turned = true;
+                    StartCoroutine(TurnAround());
+                }
+                else if (fullyTurned)
+                {*/
+                    transform.LookAt(target);
+                //}
+
+                
+
+                /*Vector3 newRot = Vector3.RotateTowards(transform.rotation.eulerAngles, target, .01f, .01f);
+                transform.rotation = Quaternion.Euler(newRot);*/
+
                 guardSurprised = true;
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
             }
             else
             {
+                //StopAllCoroutines();
+                //fullyTurned = true;
+
                 leg1.GetComponent<Animator>().Play("PatrolStatic1");
                 leg2.GetComponent<Animator>().Play("PatrolStatic2");
 
@@ -99,4 +122,21 @@ public class Patrol : MonoBehaviour
             
         }
     }
+
+    /*private IEnumerator TurnAround()
+    {
+        float degreeCounter = 0;
+        float speed = 30;
+        while(degreeCounter < 180)
+        {
+            transform.Rotate(new Vector3(0, 0, speed * Time.deltaTime));
+            degreeCounter += speed * Time.deltaTime;
+            yield return null;
+        }
+
+        transform.LookAt(target);
+        fullyTurned = true;
+
+        yield return null;
+    }*/
 }

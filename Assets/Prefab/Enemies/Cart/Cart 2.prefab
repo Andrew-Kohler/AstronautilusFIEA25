@@ -252,10 +252,6 @@ PrefabInstance:
       value: Foodcart
       objectReference: {fileID: 0}
     - target: {fileID: 7398379701973969715, guid: 5a0d4fea655098443b245f17506d2083, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7398379701973969715, guid: 5a0d4fea655098443b245f17506d2083, type: 3}
       propertyPath: m_TagString
       value: Food Cart
       objectReference: {fileID: 0}
