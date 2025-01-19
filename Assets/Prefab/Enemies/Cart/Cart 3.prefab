@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4383981070197756836}
-  - {fileID: 4259947410741082589}
+  - {fileID: 1242776521243146253}
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -130,7 +130,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7060c42e74b84fc488e0b2ec5a76e7d8, type: 3}
---- !u!4 &4259947410741082589 stripped
+--- !u!4 &1242776521243146253 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1869642074768708074, guid: 7060c42e74b84fc488e0b2ec5a76e7d8, type: 3}
   m_PrefabInstance: {fileID: 634294131653487079}
@@ -250,10 +250,6 @@ PrefabInstance:
     - target: {fileID: 7398379701973969715, guid: 5a0d4fea655098443b245f17506d2083, type: 3}
       propertyPath: m_Name
       value: Foodcart
-      objectReference: {fileID: 0}
-    - target: {fileID: 7398379701973969715, guid: 5a0d4fea655098443b245f17506d2083, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7398379701973969715, guid: 5a0d4fea655098443b245f17506d2083, type: 3}
       propertyPath: m_TagString
