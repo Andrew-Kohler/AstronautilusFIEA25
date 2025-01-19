@@ -27,6 +27,11 @@ public class StartUIManager : MonoBehaviour
         SceneManager.LoadScene("2_Game");
     }
 
+    public void ToPractice()
+    {
+        SceneManager.LoadScene("1_Practice");
+    }
+
     public void HighScores()
     {
         startUIAnim.Play("Scores", 0, 0);
