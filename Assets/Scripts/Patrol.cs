@@ -127,11 +127,10 @@ public class Patrol : MonoBehaviour
     {
         float degreeCounter = 0;
         float speed = 30;
-        while(degreeCounter < 180)
+        while (degreeCounter < 180)
         {
-            transform.Rotate(new Vector3(0, 0, speed * Time.deltaTime));
+            transform.eulerAngles += new Vector3(0, speed * Time.deltaTime, 0);
             degreeCounter += speed * Time.deltaTime;
-            yield return null;
         }
 
         transform.LookAt(target);
