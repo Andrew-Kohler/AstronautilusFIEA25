@@ -10,6 +10,9 @@ public class Lamp_Flicker : MonoBehaviour
     public int flickerTime;
     private bool lightOn;
 
+    public bool IsOn; // For if this hazard is active at all
+    [SerializeField] private GameObject lights;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,21 +23,26 @@ public class Lamp_Flicker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        if (time >= flickerTime)
+        if (IsOn)
         {
-            if (lightOn)
+            lights.SetActive(true);
+            time += Time.deltaTime;
+            if (time >= flickerTime)
             {
-                lampLight.SetActive(false);
-                lightOn = false;
-            }
-            else
-            {
-                lampLight.SetActive(true);
-                lightOn = true;
-            }
+                if (lightOn)
+                {
+                    lampLight.SetActive(false);
+                    lightOn = false;
+                }
+                else
+                {
+                    lampLight.SetActive(true);
+                    lightOn = true;
+                }
 
-            time = 0;
+                time = 0;
+            }
         }
+        
     }
 }
