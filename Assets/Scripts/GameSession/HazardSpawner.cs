@@ -57,7 +57,7 @@ public class HazardSpawner : MonoBehaviour
 
     }
 
-    private void UpdatePatrols() //TODO
+    private void UpdatePatrols()
     {
         if (inactiveGuards.Count != 0) // If they're not all out
         {
