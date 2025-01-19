@@ -6,19 +6,41 @@ using UnityEngine.SceneManagement;
 
 public class Light_Collision : MonoBehaviour
 {
+    public bool Practice = false;
     public float timeToBeCaught = 5f;
     public float lightMeter;    // The meter that determines when the raccoon is caught
     public float sneakyTime;    // How much time the player has spent being SNEAKY
     private int lights;
 
-    AudioSource audioSource;
+    private bool caught;
+
+    private float caughtTime;
+
+    [SerializeField] GameObject lightSoundSource;
+    AudioSource lightAudioSource;
+
+    [SerializeField] GameObject musicSoundSource;
+    AudioSource musicAudioSource;
+
+    [SerializeField] GameObject footstepsSoundSource;
+    AudioSource footstepsAudioSource;
+
+    [SerializeField] Animator transitionAnim;
+
+    public AudioClip jailDoors;
+    AudioSource thisAudioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+
         lightMeter = 0;
         lights = 0;
-        audioSource = GetComponent<AudioSource>();
+        thisAudioSource = GetComponent<AudioSource>();
+        lightAudioSource = lightSoundSource.GetComponent<AudioSource>();
+        musicAudioSource = musicSoundSource.GetComponent<AudioSource>();
+        footstepsAudioSource = footstepsSoundSource.GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -28,18 +50,29 @@ public class Light_Collision : MonoBehaviour
         {
             lightMeter += Time.deltaTime;
         }
-        if (lights == 0)
+        if (lights == 0 && !caught)
         {
-            lightMeter -= Time.deltaTime / 2;
+            lightMeter -= Time.deltaTime / 3;
         }
         if (lightMeter < 0)
         {
             lightMeter = 0;
         }
-        if(lightMeter > timeToBeCaught)
+        if(lightMeter > timeToBeCaught && !caught)
         {
-            SceneManager.LoadScene("3_GameOver");
+            if (Practice)
+            {
+                lightMeter = timeToBeCaught;
+            }
+            else
+            {
+                caught = true;
+                StartCoroutine(GameOver());
+            }
+            
+
         }
+
         AssignCurrentScoreMult();
 
     }
@@ -48,8 +81,8 @@ public class Light_Collision : MonoBehaviour
     {
         if (other.gameObject.tag == "Light")
         {
-            lights = 1;
-            audioSource.Play();
+            lights += 1;
+            lightAudioSource.Play();
         }
     }
 
@@ -57,8 +90,11 @@ public class Light_Collision : MonoBehaviour
     {
         if (other.gameObject.tag == "Light")
         {
-            lights = 0;
-            audioSource.Stop();
+            lights -= 1;
+            if (lights == 0)
+            {
+                lightAudioSource.Stop();
+            }
         }
     }
 
@@ -89,5 +125,17 @@ public class Light_Collision : MonoBehaviour
         {
             GameManager.Instance.currentMult = 5;
         }
+    }
+
+    IEnumerator GameOver()
+    {
+        lightAudioSource.volume = 0;
+        musicAudioSource.volume = 0;
+        footstepsAudioSource.volume = 0;
+        thisAudioSource.PlayOneShot(jailDoors);
+        transitionAnim.Play("JailBars", 0, 0);
+
+        yield return new WaitForSeconds(2.5f);
+        SceneManager.LoadScene("3_GameOver");
     }
 }
