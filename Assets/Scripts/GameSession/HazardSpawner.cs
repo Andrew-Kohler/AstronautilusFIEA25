@@ -44,6 +44,7 @@ public class HazardSpawner : MonoBehaviour
         nextFloodIndex = 0;
 
         cartSpawnTimer = currentCartSpawnTime;
+        floodSpawnTimer = currentFloodSpawnTime;
     }
 
     // Update is called once per frame
