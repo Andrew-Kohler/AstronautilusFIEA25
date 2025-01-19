@@ -17,11 +17,10 @@ public class Patrol : MonoBehaviour
 
     private bool guardSurprised;
 
-    [SerializeField] GameObject leg1;
-    [SerializeField] GameObject leg2;
-
     public AudioClip huh;
     AudioSource audioSource;
+
+    public bool IsOn; // Variable for enabling the extra 
 
     // Start is called before the first frame update
     void Start()
@@ -34,44 +33,41 @@ public class Patrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (!raccoonInSight)
+        if (IsOn)
         {
-            leg1.GetComponent<Animator>().Play("PatrollerAnim");
-            leg2.GetComponent<Animator>().Play("PatrollerAnim2");
-
-
-            if (Vector3.Distance(transform.position, point1.position) < 0.1f)
+            if (!raccoonInSight)
             {
-                target = point2.position;
+
+                if (Vector3.Distance(transform.position, point1.position) < 0.1f)
+                {
+                    target = point2.position;
+
+                }
+                else if (Vector3.Distance(transform.position, point2.position) < 0.1f)
+                {
+                    target = point1.position;
+
+                }
+
+                transform.LookAt(target);
+                guardSurprised = true;
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
             }
-            else if (Vector3.Distance(transform.position, point2.position) < 0.1f)
+            else
             {
-                target = point1.position;
-
-            }
-
-            transform.LookAt(target);
-            guardSurprised = true;
-            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-
-        }
-        else
-        {
-            leg1.GetComponent<Animator>().Play("PatrolStatic1");
-            leg2.GetComponent<Animator>().Play("PatrolStatic2");
-
-            Vector3 playerTarget = player.position;
-            playerTarget.y = transform.position.y;
-            transform.LookAt(playerTarget);
-            transform.position = transform.position;
-            if (guardSurprised)
-            {
-                audioSource.PlayOneShot(huh);
-                guardSurprised = false;
+                Vector3 playerTarget = player.position;
+                playerTarget.y = transform.position.y;
+                transform.LookAt(playerTarget);
+                transform.position = transform.position;
+                if (guardSurprised)
+                {
+                    audioSource.PlayOneShot(huh);
+                    guardSurprised = false;
+                }
             }
         }
+       
 
     }
 
