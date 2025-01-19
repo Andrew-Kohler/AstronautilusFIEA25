@@ -25,11 +25,13 @@ public class StartUIManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("2_Game");
+        GameManager.Instance.ResetGame();
     }
 
     public void ToPractice()
     {
         SceneManager.LoadScene("1_Practice");
+        GameManager.Instance.ResetGame();
     }
 
     public void HighScores()
