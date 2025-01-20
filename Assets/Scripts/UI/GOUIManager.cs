@@ -15,13 +15,23 @@ public class GOUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI finalScore;
     [SerializeField] private GameObject highScoreTXT;
 
+    [SerializeField] private GameObject pic1;
+    [SerializeField] private GameObject pic2;
+
     public AudioClip highScoreSparkle;
     public AudioClip numberFlips;
     AudioSource audioSource;
     void Start()
     {
+        
         audioSource = GetComponent<AudioSource>();
         audioSource.PlayOneShot(numberFlips);
+
+        if(GameManager.Instance.runOver)
+            pic2.SetActive(true);
+        else
+            pic1.SetActive(true);
+
         StartCoroutine(DoGameOverSequence());
     }
 

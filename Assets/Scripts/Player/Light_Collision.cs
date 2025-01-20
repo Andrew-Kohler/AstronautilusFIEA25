@@ -129,6 +129,7 @@ public class Light_Collision : MonoBehaviour
 
     IEnumerator GameOver()
     {
+        GameManager.Instance.gameActive = false;
         lightAudioSource.volume = 0;
         musicAudioSource.volume = 0;
         footstepsAudioSource.volume = 0;

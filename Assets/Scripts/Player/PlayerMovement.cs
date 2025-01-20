@@ -69,57 +69,61 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
     // Update is called once per frame
     void Update()
     {
-        _moveValues = _moveAction.ReadValue<Vector2>();
-        xDir = _moveValues.x;
-        yDir = _moveValues.y;
-
-        if (_moveValues.x != 0 || _moveValues.y != 0) 
+        if (GameManager.Instance.gameActive)
         {
-            backRightLegAnim.GetComponent<Animator>().Play("BLeg_RWalk", 0);
-            backLeftLegAnim.GetComponent<Animator>().Play("BLeg_LWalk", 0);
-            frontRightLegAnim.GetComponent<Animator>().Play("FLeg_R_Walk", 0);
-            frontLeftLegAnim.GetComponent<Animator>().Play("FLeg_L_Walk", 0);
+            _moveValues = _moveAction.ReadValue<Vector2>();
+            xDir = _moveValues.x;
+            yDir = _moveValues.y;
 
-
-            if (!soundPlaying)
+            if (_moveValues.x != 0 || _moveValues.y != 0)
             {
+                backRightLegAnim.GetComponent<Animator>().Play("BLeg_RWalk", 0);
+                backLeftLegAnim.GetComponent<Animator>().Play("BLeg_LWalk", 0);
+                frontRightLegAnim.GetComponent<Animator>().Play("FLeg_R_Walk", 0);
+                frontLeftLegAnim.GetComponent<Animator>().Play("FLeg_L_Walk", 0);
 
-                audioSource.Play();
-                soundPlaying = true;
+
+                if (!soundPlaying)
+                {
+
+                    audioSource.Play();
+                    soundPlaying = true;
+                }
+
+
+            }
+            else if (_moveValues.x == 0 && _moveValues.y == 0)
+            {
+                backRightLegAnim.GetComponent<Animator>().Play("BLeg_RStatic", 0);
+                backLeftLegAnim.GetComponent<Animator>().Play("BLeg_LStatic", 0);
+                frontRightLegAnim.GetComponent<Animator>().Play("FLeg_R_Static", 0);
+                frontLeftLegAnim.GetComponent<Animator>().Play("FLeg_LStatic", 0);
+
+                if (soundPlaying)
+                {
+                    audioSource.Stop();
+                    soundPlaying = false;
+                }
+
             }
 
-            
-        }
-        else if (_moveValues.x == 0 && _moveValues.y == 0) 
-        {
-            backRightLegAnim.GetComponent<Animator>().Play("BLeg_RStatic", 0);
-            backLeftLegAnim.GetComponent<Animator>().Play("BLeg_LStatic", 0);
-            frontRightLegAnim.GetComponent<Animator>().Play("FLeg_R_Static", 0);
-            frontLeftLegAnim.GetComponent<Animator>().Play("FLeg_LStatic", 0);
-
-            if (soundPlaying)
+            if (_dashAction.WasPressedThisFrame() && _canDash == true)
             {
-                audioSource.Stop();
-                soundPlaying = false;
+                _dashActive = true;
+                _canDash = false;
+                StartCoroutine(DoDashCooldown());
             }
-            
-        }
 
-        if (_dashAction.WasPressedThisFrame() && _canDash == true)
-        {
-            _dashActive = true;
-            _canDash = false;
-            StartCoroutine(DoDashCooldown());
+            if (_dashActive)
+            {
+                _velocity = new Vector3(_moveValues.x, 0, _moveValues.y).normalized * DashSpeed;
+            }
+            else
+            {
+                _velocity = new Vector3(_moveValues.x, 0, _moveValues.y).normalized * MoveSpeed;
+            }
         }
-
-        if (_dashActive)
-        {
-            _velocity = new Vector3(_moveValues.x, 0, _moveValues.y).normalized * DashSpeed;
-        }
-        else
-        {
-            _velocity = new Vector3(_moveValues.x, 0, _moveValues.y).normalized * MoveSpeed;
-        }
+        
     
     }
 

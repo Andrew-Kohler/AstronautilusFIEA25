@@ -29,6 +29,7 @@ public class Cart : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            GameManager.Instance.runOver = true;
             SceneManager.LoadScene("3_GameOver");
         }
     }

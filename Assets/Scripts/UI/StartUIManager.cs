@@ -8,18 +8,22 @@ public class StartUIManager : MonoBehaviour
 {
     [SerializeField] Animator startUIAnim;
     [SerializeField] List<TextMeshProUGUI> hiScores;
+    [SerializeField] List<TextMeshProUGUI> hiScorers;
+    [SerializeField] TMP_InputField nameInput;
     void Start()
     {
+        nameInput.text = GameManager.Instance.GamePersistent.currentName;
         for(int i = 0; i < hiScores.Count; i++) // Set the high scores
         {
-            hiScores[i].text = GameManager.Instance.highScoreList[i].ToString();
+            hiScores[i].text = GameManager.Instance.GamePersistent.highScoreList[i].ToString();
+            hiScorers[i].text = GameManager.Instance.GamePersistent.highScoreNames[i];
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        GameManager.Instance.GamePersistent.currentName = nameInput.text;
     }
 
     public void StartGame()

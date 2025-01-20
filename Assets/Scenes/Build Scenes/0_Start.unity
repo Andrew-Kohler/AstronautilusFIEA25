@@ -5253,6 +5253,14 @@ MonoBehaviour:
   - {fileID: 1213742433}
   - {fileID: 1930412040}
   - {fileID: 985391526}
+  hiScorers:
+  - {fileID: 2080836619}
+  - {fileID: 653351365}
+  - {fileID: 1574040366}
+  - {fileID: 1587533536}
+  - {fileID: 1132668411}
+  - {fileID: 734659121}
+  nameInput: {fileID: 806289025}
 --- !u!114 &1603094043
 MonoBehaviour:
   m_ObjectHideFlags: 0

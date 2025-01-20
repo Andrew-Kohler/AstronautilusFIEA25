@@ -1935,7 +1935,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Jennifer Purrington
+  m_text: Jennifer Purington
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 34e565d3abbbcd2439a5a192974fd5ff, type: 2}
   m_sharedMaterial: {fileID: 4356020049443877015, guid: 34e565d3abbbcd2439a5a192974fd5ff, type: 2}
@@ -2848,7 +2848,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Jennifer Purrington
+  m_text: Jennifer Purington
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 34e565d3abbbcd2439a5a192974fd5ff, type: 2}
   m_sharedMaterial: {fileID: 4356020049443877015, guid: 34e565d3abbbcd2439a5a192974fd5ff, type: 2}
