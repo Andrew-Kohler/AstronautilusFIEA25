@@ -123,6 +123,14 @@ public class PlayerMovement : MonoBehaviour, Controls.IActionsActions
                 _velocity = new Vector3(_moveValues.x, 0, _moveValues.y).normalized * MoveSpeed;
             }
         }
+        else
+        {
+            _velocity = Vector3.zero;
+            backRightLegAnim.GetComponent<Animator>().Play("BLeg_RStatic", 0);
+            backLeftLegAnim.GetComponent<Animator>().Play("BLeg_LStatic", 0);
+            frontRightLegAnim.GetComponent<Animator>().Play("FLeg_R_Static", 0);
+            frontLeftLegAnim.GetComponent<Animator>().Play("FLeg_LStatic", 0);
+        }
         
     
     }
